@@ -1,0 +1,155 @@
+{
+  "name": "Image Generation 1",
+  "nodes": [
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "89b9fada-b836-462f-b1f8-cbeb42ea68cf",
+              "name": "prompt",
+              "value": "Monkey eating pizza",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        240,
+        288
+      ],
+      "id": "4e7a09d1-668d-44c3-856f-d6b4afd37b71",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://api.cloudflare.com/client/v4/accounts/6d5da13363ffd275b6290850c17ee630/ai/run/@cf/stabilityai/stable-diffusion-xl-base-1.0\n",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer WGMy0Ilk9Pb1Jbw7-Yb71xE9MvTPkXqe6Mikj-nk"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"prompt\": \"{{ $json.prompt }}\"\n}\n ",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        528,
+        144
+      ],
+      "id": "d69cf4aa-909c-4c93-b55d-0e449ed88686",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "content": "",
+        "height": 224,
+        "color": 3
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -144,
+        80
+      ],
+      "typeVersion": 1,
+      "id": "c7cba746-937f-43c5-94dd-5ab200718485",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -80,
+        144
+      ],
+      "id": "8a058fd4-0403-48a5-9596-49c587c3f026",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "content": "",
+        "height": 192,
+        "color": 6
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        176,
+        240
+      ],
+      "typeVersion": 1,
+      "id": "16157be3-6ee1-4841-9f13-80e8d9cccf11",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "content": "",
+        "height": 208,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        464,
+        96
+      ],
+      "typeVersion": 1,
+      "id": "51c3f2b9-d7ec-4412-844a-771c1c2ad02b",
+      "name": "Sticky Note2"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        []
+      ]
+    },
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "f1d30e0d-b12d-4f69-a7ff-d8cff1457095",
+  "meta": {
+    "instanceId": "2883a5fd5408ade1bf78b8f7c816278689c25a1710d156694af49bb1b6c3f620"
+  },
+  "id": "C7hqTNKKAvpUGGGb",
+  "tags": []
+}
