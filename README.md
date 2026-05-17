@@ -137,8 +137,6 @@ Execute the workflow and generate AI-powered images instantly.
 
 ## 🔗 Repository Link
 
-Add your repository link here:
-
 ```bash
 https://github.com/parshvigoyal/Image_Generation
 ```
